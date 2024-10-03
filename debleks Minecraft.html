@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debleks Minecraft</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+        #game {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            grid-template-rows: repeat(10, 40px);
+            gap: 1px;
+            background-color: #8B4513;
+        }
+        .block {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #654321;
+            cursor: pointer;
+        }
+        .dirt {
+            background-color: #A0522D;
+        }
+        .stone {
+            background-color: #7C7C7C;
+        }
+        .grass {
+            background-color: #32CD32;
+        }
+        .sand {
+            background-color: #FFD700;
+        }
+        .water {
+            background-color: #1E90FF;
+        }
+        .wood {
+            background-color: #8B4513;
+        }
+        .leaves {
+            background-color: #228B22;
+        }
+        .brick {
+            background-color: #B22222;
+        }
+        #toolbar {
+            margin: 20px;
+        }
+        .tool {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            border: 1px solid #000;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>debleks Minecraft</h1>
+<div id="toolbar">
+    <div class="tool dirt" onclick="setCurrentBlock('dirt')" title="Dirt"></div>
+    <div class="tool stone" onclick="setCurrentBlock('stone')" title="Stone"></div>
+    <div class="tool grass" onclick="setCurrentBlock('grass')" title="Grass"></div>
+    <div class="tool sand" onclick="setCurrentBlock('sand')" title="Sand"></div>
+    <div class="tool water" onclick="setCurrentBlock('water')" title="Water"></div>
+    <div class="tool wood" onclick="setCurrentBlock('wood')" title="Wood"></div>
+    <div class="tool leaves" onclick="setCurrentBlock('leaves')" title="Leaves"></div>
+    <div class="tool brick" onclick="setCurrentBlock('brick')" title="Brick"></div>
+</div>
+<div id="game"></div>
+
+<script>
+    const gameElement = document.getElementById('game');
+    let currentBlock = 'dirt';
+
+    // Erstelle ein 10x10 Raster
+    for (let i = 0; i < 100; i++) {
+        const block = document.createElement('div');
+        block.classList.add('block');
+        block.addEventListener('click', () => toggleBlock(block));
+        gameElement.appendChild(block);
+    }
+
+    // Setze den aktuellen Blocktyp
+    function setCurrentBlock(blockType) {
+        currentBlock = blockType;
+    }
+
+    // Toggle Blocktyp beim Klicken
+    function toggleBlock(block) {
+        block.className = 'block ' + currentBlock;
+    }
+</script>
+
+</body>
+</html>
